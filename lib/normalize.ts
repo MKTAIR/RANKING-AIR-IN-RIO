@@ -1,12 +1,14 @@
 /**
- * Normaliza un número de cliente para poder compararlos de forma confiable
- * aunque vengan con espacios, ceros a la izquierda, o como número/texto
- * distinto entre el Excel y lo que tipea el cliente.
+ * Normaliza un número de cliente para comparar de forma confiable aunque
+ * venga con espacios de más o distinta mayúscula/minúscula entre el Excel
+ * y lo que tipea el cliente.
+ *
+ * OJO: no le saca letras ni ceros a la izquierda — los códigos de cliente
+ * son alfanuméricos (ej "R8706", "07898") y sacarle esos caracteres podría
+ * hacer que dos clientes distintos matcheen entre sí.
  */
 export function normalizeClientNumber(raw: unknown): string {
   const s = String(raw ?? "").trim();
-  const digitsOnly = s.replace(/\D/g, "");
-  if (!digitsOnly) return s.toUpperCase().replace(/\s+/g, "");
-  // saca ceros a la izquierda pero conserva al menos un dígito
-  return digitsOnly.replace(/^0+(?=\d)/, "");
+  if (!s) return "";
+  return s.toUpperCase().replace(/\s+/g, "");
 }
