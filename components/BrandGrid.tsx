@@ -35,7 +35,7 @@ export default function BrandGrid() {
           <div className="h-px bg-white/20" />
           <div className="flex justify-end">
             {brand.url ? (
-              
+              <a
                 href={brand.url}
                 target="_blank"
                 rel="noopener noreferrer"
