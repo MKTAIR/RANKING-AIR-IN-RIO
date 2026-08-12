@@ -1,0 +1,62 @@
+@import "tailwindcss";
+
+:root {
+  --air-teal: #05bbc4;
+  --air-teal-dark: #0a5f6b;
+  --air-ink: #0d2e30;
+  --air-deep: #042c30;
+}
+
+@theme inline {
+  --color-air-teal: var(--air-teal);
+  --color-air-ink: var(--air-ink);
+  --font-display: "Baloo 2", sans-serif;
+  --font-body: "Manrope", sans-serif;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background: var(--air-teal);
+  color: var(--air-ink);
+  font-family: "Manrope", sans-serif;
+}
+
+a {
+  color: #0e7c8c;
+}
+a:hover {
+  color: #0a5f6b;
+}
+
+input::placeholder {
+  color: #9aa8a6;
+}
+
+.font-display {
+  font-family: "Baloo 2", sans-serif;
+}
+
+.glass-card {
+  background: rgba(4, 40, 44, 0.4);
+  backdrop-filter: blur(20px) saturate(160%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid rgba(255, 255, 255, 0.38);
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.35;
+  }
+}
+.pulse-dot {
+  animation: pulse-dot 1.6s infinite;
+}
