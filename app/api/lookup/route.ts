@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getRankingData } from "@/lib/store";
 import { normalizeClientNumber } from "@/lib/normalize";
+import { getBrandDisplays } from "@/lib/brandDisplay";
 
 export async function GET(req: NextRequest) {
   const cliente = req.nextUrl.searchParams.get("cliente") ?? "";
@@ -20,7 +21,7 @@ export async function GET(req: NextRequest) {
 
   const matches = data.brands
     .filter((brand) => brand.top20.some((c) => normalizeClientNumber(c) === target))
-    .map((brand) => brand.name);
+    .flatMap((brand) => getBrandDisplays(brand.name).map((d) => d.name));
 
   return NextResponse.json({ clientNumber: cliente, brands: matches });
 }
